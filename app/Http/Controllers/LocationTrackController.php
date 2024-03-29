@@ -18,7 +18,7 @@ class LocationTrackController extends Controller
 
 
         LocationTrack::create(["node_id" => $node_id, "latitude" => $request->latitude, "longitude" => $request->longitude]);
-        return response()->json(["error"=>"Stored Successfully"]);
+        return response()->json(["success"=>"Stored Successfully"]);
     }
 
 
@@ -36,6 +36,6 @@ class LocationTrackController extends Controller
         if($node_id != 0){
             LocationTrack::where(["node_id" => $node_id])->delete();
         }
-        return response()->json(["error"=>"Reset Successfully"]);
+        return response()->redirectTo("/".$node_id);
     }
 }

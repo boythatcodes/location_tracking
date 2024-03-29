@@ -14,6 +14,11 @@
 <body>
 
     <div id="map" class="h-screen w-screen"></div>
+    @if($id != 0)
+    <form action="/api/reset/{{$id}}" class="bottom-10 fixed right-10" style="z-index: 10000;" method="post">
+        <button class="w-20 text-xl rounded hover:bg-red-500 bg-red-600 text-white">Reset</button>
+    </form>
+    @endif
     <script>
         function getRandomHexColor() {
             var r = Math.floor(Math.random() * 256);
