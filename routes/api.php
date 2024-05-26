@@ -3,6 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Mail\InqueryEmail;
+use Illuminate\Support\Facades\Mail;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::post('/send_mail/', function(Request $request){
+    $to = 'gautamsairash@gmail.com';
+    Mail::to($to)->send(new InqueryEmail($request->name, $request->email, $request->subject, $request->body));
+
+    return 'Email has been sent!';
 });
 
 
